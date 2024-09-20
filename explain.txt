@@ -1,0 +1,10 @@
+# 기본 TTS 모델의 output인 초기 음성 X를 톤 색상 변환기의 input으로 쓸 때 멜 스펙트로그램으로 변환한다.
+# 톤 색상 변환기는 기본 TTS 모델의 output audio를 mel-spectrogram으로 받아서 2D-Convolution Layer를 통과시킨다.
+# 톤 색상 변환기의 출력은 Encoder-FlowLayer-Decoder 구조를 갖는 모델 아키텍처의 Flow Layer로 들어간다.
+# 톤 색상 변환기의 출력은 Tensor형태다.
+# 인코더는 초기 음성 X를 spectrum으로 받아서 1D-Convolution Layer를 통과시킨다.
+# 인코더의 출력은 Tensor형태다.
+# 첫번째 Flow Layer에서는 Encoder의 출력과 톤 색상 변환기의 출력을 받아서 Z를 내뱉는다.
+# 두번째 Flow Layer에서는 Z와 톤 색상 변환기의 출력을 받아서 Y를 내뱉는다.
+# 두번째 Flow Layer의 출력인 Y는 Tensor 형태다.
+# Decoder는 Tensor인 Y를 받아서 HiFi-Gan, transpose 1d convolution을 통과하여 원시 파형 X를 생성한다.
